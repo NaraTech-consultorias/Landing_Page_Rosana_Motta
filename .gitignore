@@ -1,0 +1,8 @@
+# Ignore large brand book PDF
+*.pdf
+
+# Windows system files
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
