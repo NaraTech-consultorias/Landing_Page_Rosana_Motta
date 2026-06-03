@@ -196,39 +196,15 @@
     }
 
     /* Logo Style */
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
+    .logo-img {
+      height: 52px;
+      width: auto;
+      object-fit: contain;
+      transition: var(--transition-smooth);
     }
 
-    .logo-svg {
-      width: 45px;
-      height: 45px;
-      fill: none;
-    }
-
-    .logo-text {
-      display: flex;
-      flex-direction: column;
-    }
-
-    .logo-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.3rem;
-      letter-spacing: 0.03em;
-      color: var(--text-espresso);
-      line-height: 1.1;
-    }
-
-    .logo-subtitle {
-      font-size: 0.75rem;
-      color: var(--primary-gold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-top: 2px;
+    .logo:hover .logo-img {
+      transform: scale(1.03);
     }
 
     /* Navigation Links */
@@ -1045,8 +1021,9 @@
 
     /* Footer structure */
     footer {
-      background-color: var(--text-espresso);
-      color: var(--white);
+      background-color: var(--bg-cream);
+      color: var(--text-espresso);
+      border-top: 1px solid rgba(227, 218, 201, 0.6);
       padding: 4rem 2rem 2rem 2rem;
       position: relative;
       z-index: 1;
@@ -1066,38 +1043,14 @@
       align-items: center;
       flex-wrap: wrap;
       gap: 2rem;
-      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      border-bottom: 1px solid rgba(227, 218, 201, 0.6);
       padding-bottom: 2.5rem;
     }
 
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.8rem;
-    }
-
-    .footer-logo-svg {
-      width: 40px;
-      height: 40px;
-      fill: none;
-    }
-
-    .footer-logo-title {
-      font-family: 'Playfair Display', serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      letter-spacing: 0.03em;
-      color: var(--bg-cream);
-      line-height: 1.1;
-    }
-
-    .footer-logo-subtitle {
-      font-size: 0.7rem;
-      color: var(--primary-gold);
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      font-weight: 500;
-      margin-top: 2px;
+    .footer-logo-img {
+      height: 80px;
+      width: auto;
+      object-fit: contain;
     }
 
     .footer-nav {
@@ -1108,8 +1061,8 @@
 
     .footer-nav-link {
       font-size: 0.85rem;
-      color: var(--beige-sand);
-      opacity: 0.8;
+      color: var(--text-muted);
+      opacity: 0.85;
     }
 
     .footer-nav-link:hover {
@@ -1124,8 +1077,8 @@
       flex-wrap: wrap;
       gap: 1.5rem;
       font-size: 0.8rem;
-      color: var(--beige-sand);
-      opacity: 0.6;
+      color: var(--text-muted);
+      opacity: 0.7;
     }
 
     .social-links {
@@ -1137,12 +1090,18 @@
       width: 36px;
       height: 36px;
       border-radius: 50%;
-      background-color: rgba(255, 255, 255, 0.05);
-      color: var(--bg-cream);
+      background-color: var(--beige-sand);
+      color: var(--text-espresso);
       display: flex;
       align-items: center;
       justify-content: center;
       transition: var(--transition-fast);
+    }
+
+    .social-icon-box:hover {
+      background-color: var(--primary-gold);
+      color: var(--white);
+      transform: translateY(-2px);
     }
 
     .social-icon-box:hover {
@@ -1276,19 +1235,7 @@
   <header id="header">
     <div class="nav-container">
       <a href="#inicio" class="logo" aria-label="Ir para o início">
-        <svg class="logo-svg" viewBox="0 0 100 100">
-          <!-- Styled floral leaf branch merged with RM -->
-          <circle cx="50" cy="50" r="45" stroke="#E3DAC9" stroke-width="1.5" stroke-dasharray="3 3"/>
-          <path d="M35 70 V30 H48 C55 30 60 34 60 40 C60 46 55 50 48 50 H35 M48 50 L60 70" stroke="#C19345" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M50 70 V38 L65 52 L80 38 V70" stroke="#406484" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-          <path d="M68 25 C66 32 70 38 73 40 C75 36 78 32 75 25 C72 23 69 24 68 25 Z" fill="#6A7F66" opacity="0.9"/>
-          <path d="M73 40 C71 45 74 48 76 50 C78 47 80 44 78 39 C76 38 74 39 73 40 Z" fill="#6A7F66" opacity="0.8"/>
-          <path d="M64 34 C63 38 65 41 67 42 C68 40 70 38 68 34 C67 33 65 33 64 34 Z" fill="#6A7F66" opacity="0.8"/>
-        </svg>
-        <div class="logo-text">
-          <span class="logo-title">Rosana Motta</span>
-          <span class="logo-subtitle">Psicologia & Neuropsicologia</span>
-        </div>
+        <img src="assets/images/logo.png" alt="Rosana Motta - Psicologia & Neuropsicologia" class="logo-img">
       </a>
 
       <!-- Desktop Links -->
@@ -1720,15 +1667,7 @@
     <div class="footer-container">
       <div class="footer-top">
         <div class="footer-logo">
-          <svg class="footer-logo-svg" viewBox="0 0 100 100">
-            <circle cx="50" cy="50" r="45" stroke="rgba(227, 218, 201, 0.2)" stroke-width="1.5" stroke-dasharray="3 3"/>
-            <path d="M35 70 V30 H48 C55 30 60 34 60 40 C60 46 55 50 48 50 H35 M48 50 L60 70" stroke="#C19345" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M50 70 V38 L65 52 L80 38 V70" stroke="#FAF6F0" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.85"/>
-          </svg>
-          <div class="logo-text">
-            <span class="footer-logo-title">Rosana Motta</span>
-            <span class="footer-logo-subtitle">Psicologia & Neuropsicologia</span>
-          </div>
+          <img src="assets/images/logo.png" alt="Rosana Motta - Psicologia & Neuropsicologia" class="footer-logo-img">
         </div>
 
         <nav class="footer-nav" aria-label="Menu do rodapé">
