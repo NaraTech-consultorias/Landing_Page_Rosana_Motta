@@ -786,15 +786,27 @@
     }
 
     .faq-answer {
-      max-height: 0;
+      display: grid;
+      grid-template-rows: 0fr;
+      transition: grid-template-rows 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       overflow: hidden;
-      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-item.active .faq-answer {
+      grid-template-rows: 1fr;
     }
 
     .faq-answer-inner {
-      padding: 0 2rem 1.8rem 2rem;
+      min-height: 0;
+      overflow: hidden;
+      padding: 0 2rem 0 2rem;
       font-size: 0.95rem;
       color: var(--text-muted);
+      transition: padding 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .faq-item.active .faq-answer-inner {
+      padding: 0 2rem 1.8rem 2rem;
     }
 
     /* Active accordion states */
@@ -1030,16 +1042,168 @@
       transform: translateY(-2px);
     }
 
-    .social-icon-box:hover {
-      background-color: var(--primary-gold);
-      color: var(--white);
-      transform: translateY(-2px);
-    }
-
     .social-icon {
       width: 18px;
       height: 18px;
       fill: currentColor;
+    }
+
+    /* ==========================================
+       INSTAGRAM VIDEOS CAROUSEL
+       ========================================== */
+    .instagram-section {
+      padding: 6rem 2rem;
+      background-color: var(--white);
+      position: relative;
+      z-index: 1;
+    }
+
+    .instagram-container {
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .carousel-wrapper {
+      position: relative;
+      padding: 0 3.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 1.5rem;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      scroll-snap-type: x mandatory;
+      scrollbar-width: none;
+    }
+
+    .carousel-track::-webkit-scrollbar {
+      display: none;
+    }
+
+    .carousel-slide {
+      flex: 0 0 calc((100% - 3rem) / 3);
+      scroll-snap-align: start;
+    }
+
+    @media (max-width: 1024px) {
+      .carousel-slide {
+        flex: 0 0 calc((100% - 1.5rem) / 2);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .carousel-slide {
+        flex: 0 0 85%;
+      }
+      .carousel-wrapper {
+        padding: 0 1rem;
+      }
+    }
+
+    .reel-card {
+      width: 100%;
+      aspect-ratio: 9 / 16;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+      border: 1px solid rgba(227, 218, 201, 0.4);
+      background-color: var(--bg-cream);
+      position: relative;
+    }
+
+    .reel-card iframe {
+      position: absolute;
+      width: 160%;
+      height: 180%;
+      top: -10%;
+      left: -30%;
+      border: none;
+      display: block;
+      pointer-events: auto;
+    }
+
+    .reel-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 2;
+      display: none;
+    }
+
+    @media (max-width: 768px) {
+      .reel-overlay {
+        display: block;
+      }
+    }
+
+    .carousel-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 3rem;
+      height: 3rem;
+      border-radius: 50%;
+      background-color: var(--white);
+      color: var(--secondary-blue);
+      border: none;
+      box-shadow: 0 4px 15px rgba(46, 34, 28, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      z-index: 10;
+      transition: var(--transition-fast);
+    }
+
+    .carousel-nav:hover {
+      background-color: var(--secondary-blue-light);
+      transform: translateY(-50%) scale(1.05);
+    }
+
+    .carousel-nav.prev {
+      left: 0;
+    }
+
+    .carousel-nav.next {
+      right: 0;
+    }
+
+    @media (max-width: 768px) {
+      .carousel-nav {
+        display: none;
+      }
+    }
+
+    .carousel-indicators {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 1.5rem;
+    }
+
+    .indicator-dot {
+      width: 0.6rem;
+      height: 0.6rem;
+      border-radius: 50%;
+      background-color: rgba(64, 100, 132, 0.2);
+      border: none;
+      cursor: pointer;
+      transition: var(--transition-fast);
+    }
+
+    .indicator-dot.active {
+      background-color: var(--secondary-blue);
+      width: 1.5rem;
+      border-radius: 10px;
+    }
+
+    .instagram-cta-wrapper {
+      text-align: center;
+      margin-top: 3rem;
     }
 
     /* ==========================================
@@ -1114,8 +1278,15 @@
       html {
         font-size: 15px;
       }
+      section {
+        padding: 4rem 1.25rem;
+      }
       .hero {
-        padding-top: 7rem;
+        padding: 6rem 1.25rem 3rem 1.25rem;
+        min-height: auto;
+      }
+      .hero-image-frame {
+        max-width: 280px;
       }
       .hero-title {
         font-size: 2.4rem;
@@ -1169,6 +1340,7 @@
         <a href="#inicio" class="nav-item">Início</a>
         <a href="#sobre" class="nav-item">Sobre</a>
         <a href="#especialidades" class="nav-item">Especialidades</a>
+        <a href="#videos" class="nav-item">Vídeos</a>
         <a href="#faq" class="nav-item">Dúvidas</a>
         <a href="#contato" class="nav-item">Contato</a>
       </nav>
@@ -1193,6 +1365,7 @@
     <a href="#inicio" class="mobile-menu-item">Início</a>
     <a href="#sobre" class="mobile-menu-item">Sobre</a>
     <a href="#especialidades" class="mobile-menu-item">Especialidades</a>
+    <a href="#videos" class="mobile-menu-item">Vídeos</a>
     <a href="#faq" class="mobile-menu-item">Dúvidas</a>
     <a href="#contato" class="mobile-menu-item">Contato</a>
     <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+saber+mais+sobre+o+atendimento+cl%C3%ADnico." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="margin-top: 1rem; width: 80%;">
@@ -1383,44 +1556,75 @@
             </a>
           </div>
 
-          <!-- Card 3: Reabilitação Cognitiva -->
-          <div class="service-card reveal reveal-delay-2">
-            <div class="service-icon-box">
-              <svg class="service-icon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <!-- Customized puzzle/rehab outline -->
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
-              </svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         INSTAGRAM VIDEOS CAROUSEL
+         ========================================== */ -->
+    <section class="instagram-section" id="videos">
+      <div class="instagram-container">
+        <div class="section-header reveal">
+          <span class="section-tagline">Acompanhe no Instagram</span>
+          <h2 class="section-title">Conteúdo e Dicas em Vídeo</h2>
+          <p class="section-description">Assista aos principais vídeos informativos e dicas de saúde da mente diretamente do meu Instagram.</p>
+        </div>
+
+        <div class="carousel-wrapper reveal reveal-delay-1">
+          <button class="carousel-nav prev" id="carousel-prev" aria-label="Vídeo anterior">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="15 18 9 12 15 6"></polyline>
+            </svg>
+          </button>
+          
+          <div class="carousel-track" id="carousel-track">
+            <!-- Video 1 -->
+            <div class="carousel-slide">
+              <div class="reel-card">
+                <iframe src="https://www.instagram.com/reel/DXIFv1ohxsS/embed/" title="Vídeo do Instagram 1" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <a href="https://www.instagram.com/reel/DXIFv1ohxsS/" target="_blank" rel="noopener noreferrer" class="reel-overlay" aria-label="Assistir no Instagram"></a>
+              </div>
             </div>
-            <h3 class="service-title">Reabilitação Cognitiva</h3>
-            <p class="service-text">
-              Intervenção terapêutica para desenvolver, recuperar ou compensar funções cognitivas comprometidas por lesões cerebrais, transtornos do neurodesenvolvimento ou envelhecimento ativo.
-            </p>
-            <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Reabilitacao+Cognitiva." target="_blank" rel="noopener noreferrer" class="service-link">
-              Saiba Mais 
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
+            <!-- Video 2 -->
+            <div class="carousel-slide">
+              <div class="reel-card">
+                <iframe src="https://www.instagram.com/reel/DW2K-0lBNyc/embed/" title="Vídeo do Instagram 2" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <a href="https://www.instagram.com/reel/DW2K-0lBNyc/" target="_blank" rel="noopener noreferrer" class="reel-overlay" aria-label="Assistir no Instagram"></a>
+              </div>
+            </div>
+            <!-- Video 3 -->
+            <div class="carousel-slide">
+              <div class="reel-card">
+                <iframe src="https://www.instagram.com/reel/DWH0v1agbuF/embed/" title="Vídeo do Instagram 3" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <a href="https://www.instagram.com/reel/DWH0v1agbuF/" target="_blank" rel="noopener noreferrer" class="reel-overlay" aria-label="Assistir no Instagram"></a>
+              </div>
+            </div>
+            <!-- Video 4 -->
+            <div class="carousel-slide">
+              <div class="reel-card">
+                <iframe src="https://www.instagram.com/reel/DWSH66sBQAH/embed/" title="Vídeo do Instagram 4" frameborder="0" scrolling="no" allowtransparency="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+                <a href="https://www.instagram.com/reel/DWSH66sBQAH/" target="_blank" rel="noopener noreferrer" class="reel-overlay" aria-label="Assistir no Instagram"></a>
+              </div>
+            </div>
           </div>
 
-          <!-- Card 4: Orientação Especializada -->
-          <div class="service-card reveal reveal-delay-3">
-            <div class="service-icon-box">
-              <svg class="service-icon" viewBox="0 0 24 24" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
-                <!-- Customized hands/heart/family outline -->
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-                <circle cx="9" cy="7" r="4"/>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-              </svg>
-            </div>
-            <h3 class="service-title">Orientação a Pais</h3>
-            <p class="service-text">
-              Suporte especializado a pais e responsáveis para compreender melhor as demandas emocionais, comportamentais e cognitivas na infância e adolescência, fortalecendo a dinâmica familiar.
-            </p>
-            <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Orientacao+a+Pais." target="_blank" rel="noopener noreferrer" class="service-link">
-              Saiba Mais 
-              <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
-            </a>
-          </div>
+          <button class="carousel-nav next" id="carousel-next" aria-label="Próximo vídeo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </button>
+        </div>
+
+        <div class="carousel-indicators" id="carousel-indicators"></div>
+
+        <div class="instagram-cta-wrapper reveal reveal-delay-2">
+          <a href="https://www.instagram.com/rosanamotta.psi?igsh=MXU4N3ByNjVvdzRpbA==" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="background-color: var(--secondary-blue); box-shadow: 0 4px 15px rgba(64, 100, 132, 0.2);">
+            <svg style="width: 20px; height: 20px; fill: currentColor; margin-right: 0.5rem; display: inline-block; vertical-align: middle;" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
+            </svg>
+            Ver mais no Instagram
+          </a>
         </div>
       </div>
     </section>
@@ -1580,6 +1784,7 @@
           <a href="#inicio" class="footer-nav-link">Início</a>
           <a href="#sobre" class="footer-nav-link">Sobre</a>
           <a href="#especialidades" class="footer-nav-link">Especialidades</a>
+          <a href="#videos" class="footer-nav-link">Vídeos</a>
           <a href="#faq" class="footer-nav-link">Dúvidas</a>
           <a href="#contato" class="footer-nav-link">Contato</a>
         </nav>
@@ -1637,12 +1842,11 @@
         }
       });
 
-      // 3. FAQ Accordion Logic
+      // 3. FAQ Accordion Logic (CSS Grid Transition)
       const faqItems = document.querySelectorAll('.faq-item');
 
       faqItems.forEach(item => {
         const questionBtn = item.querySelector('.faq-question');
-        const answer = item.querySelector('.faq-answer');
 
         questionBtn.addEventListener('click', () => {
           const isActive = item.classList.contains('active');
@@ -1651,14 +1855,12 @@
           faqItems.forEach(innerItem => {
             innerItem.classList.remove('active');
             innerItem.querySelector('.faq-question').setAttribute('aria-expanded', 'false');
-            innerItem.querySelector('.faq-answer').style.maxHeight = null;
           });
 
           // Open clicked one if it wasn't active
           if (!isActive) {
             item.classList.add('active');
             questionBtn.setAttribute('aria-expanded', 'true');
-            answer.style.maxHeight = answer.scrollHeight + 'px';
           }
         });
       });
@@ -1682,6 +1884,64 @@
       revealElements.forEach(element => {
         revealObserver.observe(element);
       });
+
+      // 5. Instagram Videos Carousel Logic
+      const track = document.getElementById('carousel-track');
+      const prevBtn = document.getElementById('carousel-prev');
+      const nextBtn = document.getElementById('carousel-next');
+      const indicatorsContainer = document.getElementById('carousel-indicators');
+      
+      if (track && prevBtn && nextBtn && indicatorsContainer) {
+        const slides = track.querySelectorAll('.carousel-slide');
+        const dotsCount = slides.length;
+        
+        // Generate dots
+        for (let i = 0; i < dotsCount; i++) {
+          const dot = document.createElement('button');
+          dot.classList.add('indicator-dot');
+          if (i === 0) dot.classList.add('active');
+          dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
+          dot.addEventListener('click', () => {
+            track.scrollTo({
+              left: slides[i].offsetLeft - track.offsetLeft - 16,
+              behavior: 'smooth'
+            });
+          });
+          indicatorsContainer.appendChild(dot);
+        }
+
+        const dots = indicatorsContainer.querySelectorAll('.indicator-dot');
+
+        // Update dots on scroll
+        track.addEventListener('scroll', () => {
+          const scrollPosition = track.scrollLeft;
+          const slideWidth = slides[0].offsetWidth + 24; // slide width + gap
+          const activeIndex = Math.round(scrollPosition / slideWidth);
+          
+          dots.forEach((dot, index) => {
+            if (index === activeIndex) {
+              dot.classList.add('active');
+            } else {
+              dot.classList.remove('active');
+            }
+          });
+        });
+
+        // Nav buttons
+        prevBtn.addEventListener('click', () => {
+          track.scrollBy({
+            left: -(slides[0].offsetWidth + 24),
+            behavior: 'smooth'
+          });
+        });
+
+        nextBtn.addEventListener('click', () => {
+          track.scrollBy({
+            left: (slides[0].offsetWidth + 24),
+            behavior: 'smooth'
+          });
+        });
+      }
     });
   </script>
 </body>
