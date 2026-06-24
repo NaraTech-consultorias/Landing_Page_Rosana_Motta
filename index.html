@@ -1964,21 +1964,37 @@
           resizeTimeout = setTimeout(updateCarousel, 150);
         });
 
-        // Nav buttons
+        // Nav buttons (circular loop navigation)
         prevBtn.addEventListener('click', () => {
           const slideWidth = slides[0].offsetWidth + 24;
-          track.scrollBy({
-            left: -slideWidth,
-            behavior: 'smooth'
-          });
+          const maxScroll = track.scrollWidth - track.clientWidth;
+          if (track.scrollLeft <= 5) {
+            track.scrollTo({
+              left: maxScroll,
+              behavior: 'smooth'
+            });
+          } else {
+            track.scrollBy({
+              left: -slideWidth,
+              behavior: 'smooth'
+            });
+          }
         });
 
         nextBtn.addEventListener('click', () => {
           const slideWidth = slides[0].offsetWidth + 24;
-          track.scrollBy({
-            left: slideWidth,
-            behavior: 'smooth'
-          });
+          const maxScroll = track.scrollWidth - track.clientWidth;
+          if (track.scrollLeft >= maxScroll - 5) {
+            track.scrollTo({
+              left: 0,
+              behavior: 'smooth'
+            });
+          } else {
+            track.scrollBy({
+              left: slideWidth,
+              behavior: 'smooth'
+            });
+          }
         });
       }
     });
