@@ -1890,7 +1890,7 @@
         revealObserver.observe(element);
       });
 
-      // 5. Instagram Videos Carousel Logic
+      // 5. Instagram Videos Carousel Logic (Dynamic Dots based on scroll states)
       const track = document.getElementById('carousel-track');
       const prevBtn = document.getElementById('carousel-prev');
       const nextBtn = document.getElementById('carousel-next');
@@ -1898,51 +1898,85 @@
       
       if (track && prevBtn && nextBtn && indicatorsContainer) {
         const slides = track.querySelectorAll('.carousel-slide');
-        const dotsCount = slides.length;
         
-        // Generate dots
-        for (let i = 0; i < dotsCount; i++) {
-          const dot = document.createElement('button');
-          dot.classList.add('indicator-dot');
-          if (i === 0) dot.classList.add('active');
-          dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
-          dot.addEventListener('click', () => {
-            track.scrollTo({
-              left: slides[i].offsetLeft - track.offsetLeft - 16,
-              behavior: 'smooth'
-            });
-          });
-          indicatorsContainer.appendChild(dot);
-        }
-
-        const dots = indicatorsContainer.querySelectorAll('.indicator-dot');
-
-        // Update dots on scroll
-        track.addEventListener('scroll', () => {
-          const scrollPosition = track.scrollLeft;
-          const slideWidth = slides[0].offsetWidth + 24; // slide width + gap
-          const activeIndex = Math.round(scrollPosition / slideWidth);
+        const updateCarousel = () => {
+          indicatorsContainer.innerHTML = '';
           
-          dots.forEach((dot, index) => {
-            if (index === activeIndex) {
-              dot.classList.add('active');
-            } else {
-              dot.classList.remove('active');
+          const scrollWidth = track.scrollWidth;
+          const clientWidth = track.clientWidth;
+          const maxScroll = scrollWidth - clientWidth;
+          
+          if (maxScroll <= 0) {
+            prevBtn.style.display = 'none';
+            nextBtn.style.display = 'none';
+            return;
+          } else {
+            prevBtn.style.display = '';
+            nextBtn.style.display = '';
+          }
+          
+          const slideWidth = slides[0].offsetWidth + 24; // slide width + gap
+          const dotsCount = Math.round(maxScroll / slideWidth) + 1;
+          
+          const dots = [];
+          for (let i = 0; i < dotsCount; i++) {
+            const dot = document.createElement('button');
+            dot.classList.add('indicator-dot');
+            if (i === 0) dot.classList.add('active');
+            dot.setAttribute('aria-label', `Ir para slide ${i + 1}`);
+            
+            dot.addEventListener('click', () => {
+              const targetScroll = (i === dotsCount - 1) ? maxScroll : i * slideWidth;
+              track.scrollTo({
+                left: targetScroll,
+                behavior: 'smooth'
+              });
+            });
+            indicatorsContainer.appendChild(dot);
+            dots.push(dot);
+          }
+
+          const handleScroll = () => {
+            const scrollPosition = track.scrollLeft;
+            let activeIndex = Math.round(scrollPosition / slideWidth);
+            if (scrollPosition >= maxScroll - 5) {
+              activeIndex = dotsCount - 1;
             }
-          });
+            dots.forEach((dot, index) => {
+              if (index === activeIndex) {
+                dot.classList.add('active');
+              } else {
+                dot.classList.remove('active');
+              }
+            });
+          };
+
+          track.removeEventListener('scroll', track._handleScrollFn);
+          track._handleScrollFn = handleScroll;
+          track.addEventListener('scroll', handleScroll);
+        };
+
+        // Run on load and on resize
+        updateCarousel();
+        let resizeTimeout;
+        window.addEventListener('resize', () => {
+          clearTimeout(resizeTimeout);
+          resizeTimeout = setTimeout(updateCarousel, 150);
         });
 
         // Nav buttons
         prevBtn.addEventListener('click', () => {
+          const slideWidth = slides[0].offsetWidth + 24;
           track.scrollBy({
-            left: -(slides[0].offsetWidth + 24),
+            left: -slideWidth,
             behavior: 'smooth'
           });
         });
 
         nextBtn.addEventListener('click', () => {
+          const slideWidth = slides[0].offsetWidth + 24;
           track.scrollBy({
-            left: (slides[0].offsetWidth + 24),
+            left: slideWidth,
             behavior: 'smooth'
           });
         });
