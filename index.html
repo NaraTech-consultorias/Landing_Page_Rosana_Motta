@@ -530,16 +530,15 @@
       background-color: var(--beige-sand);
     }
 
-    .about-img-placeholder {
+    .about-img {
       width: 100%;
       height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      padding: 2rem;
-      text-align: center;
-      background: linear-gradient(135deg, var(--beige-sand), var(--white));
+      object-fit: cover;
+      transition: transform 6s ease;
+    }
+
+    .about-visual:hover .about-img {
+      transform: scale(1.05);
     }
 
     .about-decor-leaf {
@@ -729,80 +728,7 @@
       transform: translateX(4px);
     }
 
-    /* ==========================================
-       MANIFESTO SECTION (DARK BLUE CONTRAST)
-       ========================================== */
-    .manifesto {
-      padding: 8rem 2rem;
-      background-color: var(--secondary-blue);
-      color: var(--white);
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-      z-index: 1;
-    }
 
-    .manifesto-container {
-      max-width: 900px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 2rem;
-      position: relative;
-      z-index: 2;
-    }
-
-    .manifesto-icon {
-      width: 50px;
-      height: 50px;
-      fill: none;
-      stroke: var(--primary-gold);
-      opacity: 0.9;
-    }
-
-    .manifesto-quote {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 2.5rem;
-      font-weight: 400;
-      line-height: 1.45;
-      font-style: italic;
-      color: var(--bg-cream);
-    }
-
-    .manifesto-author {
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.2em;
-      color: var(--primary-gold);
-      margin-top: 1rem;
-    }
-
-    /* Deco leaves in dark section */
-    .manifesto-bg-leaf-left {
-      position: absolute;
-      top: -50px;
-      left: -50px;
-      width: 250px;
-      height: 250px;
-      opacity: 0.08;
-      fill: var(--white);
-      transform: rotate(30deg);
-      pointer-events: none;
-    }
-
-    .manifesto-bg-leaf-right {
-      position: absolute;
-      bottom: -80px;
-      right: -50px;
-      width: 280px;
-      height: 280px;
-      opacity: 0.08;
-      fill: var(--white);
-      transform: rotate(-45deg);
-      pointer-events: none;
-    }
 
     /* ==========================================
        FAQ SECTION (ACCORDION)
@@ -1235,7 +1161,7 @@
   <header id="header">
     <div class="nav-container">
       <a href="#inicio" class="logo" aria-label="Ir para o início">
-        <img src="assets/images/logo.png" alt="Rosana Motta - Psicologia & Neuropsicologia" class="logo-img">
+        <img src="assets/images/logo_nova.jpeg" alt="Rosana Motta - Psicologia & Neuropsicologia" class="logo-img">
       </a>
 
       <!-- Desktop Links -->
@@ -1243,13 +1169,12 @@
         <a href="#inicio" class="nav-item">Início</a>
         <a href="#sobre" class="nav-item">Sobre</a>
         <a href="#especialidades" class="nav-item">Especialidades</a>
-        <a href="#manifesto" class="nav-item">Manifesto</a>
         <a href="#faq" class="nav-item">Dúvidas</a>
         <a href="#contato" class="nav-item">Contato</a>
       </nav>
 
       <div class="header-cta">
-        <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+saber+mais+sobre+o+atendimento+cl%C3%ADnico." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
+        <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+saber+mais+sobre+o+atendimento+cl%C3%ADnico." target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="padding: 0.6rem 1.5rem; font-size: 0.85rem;">
           Agendar Consulta
         </a>
       </div>
@@ -1268,10 +1193,9 @@
     <a href="#inicio" class="mobile-menu-item">Início</a>
     <a href="#sobre" class="mobile-menu-item">Sobre</a>
     <a href="#especialidades" class="mobile-menu-item">Especialidades</a>
-    <a href="#manifesto" class="mobile-menu-item">Manifesto</a>
     <a href="#faq" class="mobile-menu-item">Dúvidas</a>
     <a href="#contato" class="mobile-menu-item">Contato</a>
-    <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+saber+mais+sobre+o+atendimento+cl%C3%ADnico." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="margin-top: 1rem; width: 80%;">
+    <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+saber+mais+sobre+o+atendimento+cl%C3%ADnico." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="margin-top: 1rem; width: 80%;">
       Falar no WhatsApp
     </a>
   </div>
@@ -1292,7 +1216,7 @@
             Acolhimento clínico humanizado e avaliação neuropsicológica especializada voltados para crianças, adolescentes e adultos. Um caminho baseado na ética, no conhecimento científico e no profundo respeito à singularidade humana.
           </p>
           <div class="hero-ctas">
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+agendar+uma+consulta." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+agendar+uma+consulta." target="_blank" rel="noopener noreferrer" class="btn btn-primary">
               <svg style="width: 20px; height: 20px; fill: currentColor;" viewBox="0 0 24 24">
                 <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.335 4.963L2 22l5.233-1.371a9.96 9.96 0 0 0 4.779 1.21h.005c5.505 0 9.99-4.478 9.99-9.986 0-2.67-1.037-5.178-2.92-7.062A9.925 9.925 0 0 0 12.012 2zm5.836 14.199c-.32.899-1.545 1.684-2.122 1.745-.523.056-1.201.079-1.939-.158a14.73 14.73 0 0 1-5.748-3.738 14.802 14.802 0 0 1-3.743-5.753c-.309-.942-.258-1.63.155-2.052.378-.386.825-.853 1.139-1.23.097-.116.197-.247.289-.356.126-.148.24-.265.372-.265.132 0 .265.053.376.158l.189.179c.677.671 1.488 1.488 1.636 1.776.115.226.04.49-.074.698l-.439.805c-.104.186-.06.377.06.568a9.418 9.418 0 0 0 2.502 2.503c.191.121.383.165.568.06l.805-.438c.208-.113.473-.189.699-.074.288.148 1.104.959 1.775 1.635l.179.19c.105.111.158.243.158.375s-.089.26-.265.373z"/>
               </svg>
@@ -1318,7 +1242,7 @@
           <!-- Glass Card -->
           <div class="hero-badge reveal reveal-delay-3">
             <div class="hero-badge-title">Rosana Motta</div>
-            <div class="hero-badge-desc">Psicóloga Clínica e Neuropsicóloga<br><strong>CRP 06/12345-SP</strong></div>
+            <div class="hero-badge-desc">Psicóloga Clínica e Neuropsicóloga<br><strong>CRP 05/51062</strong></div>
           </div>
         </div>
       </div>
@@ -1331,17 +1255,7 @@
       <div class="about-container">
         <div class="about-visual reveal">
           <div class="about-frame">
-            <div class="about-img-placeholder">
-              <!-- Inline SVG placeholder image with elegant vector art since we don't have second picture -->
-              <svg width="150" height="150" viewBox="0 0 100 100" fill="none" style="margin-bottom: 1.5rem;">
-                <path d="M50 15 C30 15 15 30 15 50 C15 70 30 85 50 85 C70 85 85 70 85 50 C85 30 70 15 50 15 Z" stroke="#C19345" stroke-width="1.5"/>
-                <path d="M50 25 C40 25 32 33 32 43 C32 58 50 78 50 78 C50 78 68 58 68 43 C68 33 60 25 50 25 Z" fill="#6A7F66" opacity="0.25"/>
-                <path d="M40 45 C45 42 55 42 60 45" stroke="#C19345" stroke-width="2" stroke-linecap="round"/>
-                <circle cx="50" cy="48" r="1.5" fill="#2E221C"/>
-              </svg>
-              <h4 style="font-size: 1.3rem; margin-bottom: 0.5rem; color: var(--text-espresso);">O Espaço Clínico</h4>
-              <p style="font-size: 0.9rem; color: var(--text-light);">Um ambiente acolhedor, sigiloso e preparado para acolher sua história com empatia e escuta qualificada.</p>
-            </div>
+            <img src="assets/images/foto_sobre.jpg" alt="Rosana Motta — Psicóloga, Psicanalista e Neuropsicóloga" class="about-img">
           </div>
           <!-- Decorative Background leaf -->
           <svg class="about-decor-leaf" viewBox="0 0 100 100" fill="none">
@@ -1427,7 +1341,7 @@
             <p class="service-text">
               Investigação aprofundada das funções cognitivas (atenção, memória, linguagem, funções executivas) e emocionais. Indicado para o diagnóstico de TDAH, Autismo, dificuldades de aprendizagem e perdas cognitivas.
             </p>
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Avaliacao+Neuropsicologica." target="_blank" rel="noopener noreferrer" class="service-link">
+            <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Avaliacao+Neuropsicologica." target="_blank" rel="noopener noreferrer" class="service-link">
               Saiba Mais 
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
@@ -1445,7 +1359,7 @@
             <p class="service-text">
               Espaço terapêutico pautado na escuta sensível e na psicanálise, auxiliando no tratamento da ansiedade, depressão, dores emocionais e conflitos relacionais. Disponível para adolescentes e adultos.
             </p>
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Acompanhamento+Psicologico." target="_blank" rel="noopener noreferrer" class="service-link">
+            <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Acompanhamento+Psicologico." target="_blank" rel="noopener noreferrer" class="service-link">
               Saiba Mais 
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
@@ -1463,7 +1377,7 @@
             <p class="service-text">
               Intervenção terapêutica para desenvolver, recuperar ou compensar funções cognitivas comprometidas por lesões cerebrais, transtornos do neurodesenvolvimento ou envelhecimento ativo.
             </p>
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Reabilitacao+Cognitiva." target="_blank" rel="noopener noreferrer" class="service-link">
+            <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Reabilitacao+Cognitiva." target="_blank" rel="noopener noreferrer" class="service-link">
               Saiba Mais 
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
@@ -1484,7 +1398,7 @@
             <p class="service-text">
               Suporte especializado a pais e responsáveis para compreender melhor as demandas emocionais, comportamentais e cognitivas na infância e adolescência, fortalecendo a dinâmica familiar.
             </p>
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Orientacao+a+Pais." target="_blank" rel="noopener noreferrer" class="service-link">
+            <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+informacoes+sobre+Orientacao+a+Pais." target="_blank" rel="noopener noreferrer" class="service-link">
               Saiba Mais 
               <svg viewBox="0 0 24 24" fill="none" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
             </a>
@@ -1493,35 +1407,7 @@
       </div>
     </section>
 
-    <!-- ==========================================
-         MANIFESTO SECTION
-         ========================================== */ -->
-    <section class="manifesto" id="manifesto">
-      <!-- Background floral accents -->
-      <svg class="manifesto-bg-leaf-left" viewBox="0 0 100 100">
-        <path d="M10 80 C20 60 10 30 35 15 C45 35 25 55 10 80 Z"/>
-        <path d="M35 15 C55 35 35 60 20 80"/>
-      </svg>
-      <svg class="manifesto-bg-leaf-right" viewBox="0 0 100 100">
-        <path d="M10 80 C20 60 10 30 35 15 C45 35 25 55 10 80 Z"/>
-        <path d="M35 15 C55 35 35 60 20 80"/>
-      </svg>
 
-      <div class="manifesto-container reveal">
-        <svg class="manifesto-icon" viewBox="0 0 24 24" stroke-width="1.5">
-          <path d="M12 21c-3.1 0-6-1.5-7.8-4C3 15 2.5 12.8 2.5 12c0-.8.5-3 1.7-5C6 4.5 8.9 3 12 3s6 1.5 7.8 4c1.2 2 1.7 4.2 1.7 5 0 .8-.5 3-1.7 5c-1.8 2.5-4.7 4-7.8 4z"/>
-          <path d="M12 8a4 4 0 1 0 0 8 4 4 0 0 0 0-8z" fill="#C19345" opacity="0.3"/>
-        </svg>
-        
-        <h2 class="section-tagline" style="color: var(--primary-gold);">Manifesto da Marca</h2>
-        
-        <blockquote class="manifesto-quote">
-          "Na Clínica Rosana Motta, acreditamos que cada pessoa carrega uma história única. Antes de qualquer diagnóstico, resultado ou hipótese, existe um sujeito que merece ser ouvido, compreendido e respeitado. Nossa atuação é guiada pela convicção de que ciência e sensibilidade devem caminhar juntas."
-        </blockquote>
-        
-        <cite class="manifesto-author">— Porque compreender é o primeiro passo para cuidar</cite>
-      </div>
-    </section>
 
     <!-- ==========================================
          FAQ SECTION (ACCORDION)
@@ -1621,7 +1507,7 @@
               </div>
               <div class="contact-detail-content">
                 <span class="contact-detail-label">Consultório Presencial</span>
-                <span class="contact-detail-value">Av. Paulista, 1000 — Bela Vista, São Paulo/SP</span>
+                <span class="contact-detail-value">Atendimentos em Botafogo ou Barra da Tijuca, Rio de Janeiro/RJ</span>
               </div>
             </div>
 
@@ -1635,7 +1521,9 @@
               </div>
               <div class="contact-detail-content">
                 <span class="contact-detail-label">E-mail para contato</span>
-                <span class="contact-detail-value">contato@rosanamottapsi.com.br</span>
+                <span class="contact-detail-value">
+                  <a href="mailto:rosana.neuropsicologa@gmail.com" style="color: inherit; transition: var(--transition-fast);">rosana.neuropsicologa@gmail.com</a>
+                </span>
               </div>
             </div>
           </div>
@@ -1646,7 +1534,7 @@
           <p class="contact-call-desc">O agendamento é feito de forma rápida e segura através do WhatsApp. Clique no botão abaixo para conversar comigo e escolher o melhor dia e horário.</p>
           
           <div class="contact-cta-wrapper">
-            <a href="https://wa.me/5511999999999?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+saber+mais+sobre+o+atendimento+cl%C3%ADnico." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%; padding: 1.1rem;">
+            <a href="https://wa.me/5521972502531?text=Ol%C3%A1%2C+Rosana.+Gostaria+de+saber+mais+sobre+o+atendimento+cl%C3%ADnico." target="_blank" rel="noopener noreferrer" class="btn btn-whatsapp" style="width: 100%; padding: 1.1rem;">
               <svg style="width: 24px; height: 24px; fill: currentColor;" viewBox="0 0 24 24">
                 <path d="M12.012 2c-5.506 0-9.989 4.478-9.99 9.984a9.96 9.96 0 0 0 1.335 4.963L2 22l5.233-1.371a9.96 9.96 0 0 0 4.779 1.21h.005c5.505 0 9.99-4.478 9.99-9.986 0-2.67-1.037-5.178-2.92-7.062A9.925 9.925 0 0 0 12.012 2zm5.836 14.199c-.32.899-1.545 1.684-2.122 1.745-.523.056-1.201.079-1.939-.158a14.73 14.73 0 0 1-5.748-3.738 14.802 14.802 0 0 1-3.743-5.753c-.309-.942-.258-1.63.155-2.052.378-.386.825-.853 1.139-1.23.097-.116.197-.247.289-.356.126-.148.24-.265.372-.265.132 0 .265.053.376.158l.189.179c.677.671 1.488 1.488 1.636 1.776.115.226.04.49-.074.698l-.439.805c-.104.186-.06.377.06.568a9.418 9.418 0 0 0 2.502 2.503c.191.121.383.165.568.06l.805-.438c.208-.113.473-.189.699-.074.288.148 1.104.959 1.775 1.635l.179.19c.105.111.158.243.158.375s-.089.26-.265.373z"/>
               </svg>
@@ -1654,7 +1542,7 @@
             </a>
           </div>
 
-          <span class="contact-crp-text">Rosana Ozório Motta · Psicóloga Clínica · CRP 06/12345-SP</span>
+          <span class="contact-crp-text">Rosana Ozório Motta · Psicóloga Clínica · CRP 05/51062</span>
         </div>
       </div>
     </section>
@@ -1667,14 +1555,13 @@
     <div class="footer-container">
       <div class="footer-top">
         <div class="footer-logo">
-          <img src="assets/images/logo.png" alt="Rosana Motta - Psicologia & Neuropsicologia" class="footer-logo-img">
+          <img src="assets/images/logo_nova.jpeg" alt="Rosana Motta - Psicologia & Neuropsicologia" class="footer-logo-img">
         </div>
 
         <nav class="footer-nav" aria-label="Menu do rodapé">
           <a href="#inicio" class="footer-nav-link">Início</a>
           <a href="#sobre" class="footer-nav-link">Sobre</a>
           <a href="#especialidades" class="footer-nav-link">Especialidades</a>
-          <a href="#manifesto" class="footer-nav-link">Manifesto</a>
           <a href="#faq" class="footer-nav-link">Dúvidas</a>
           <a href="#contato" class="footer-nav-link">Contato</a>
         </nav>
@@ -1686,14 +1573,9 @@
         </span>
         
         <div class="social-links">
-          <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" class="social-icon-box" aria-label="Instagram">
+          <a href="https://www.instagram.com/rosanamotta.psi?igsh=MXU4N3ByNjVvdzRpbA==" target="_blank" rel="noopener noreferrer" class="social-icon-box" aria-label="Instagram">
             <svg class="social-icon" viewBox="0 0 24 24">
               <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.051.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zM12 16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm6.406-11.845a1.44 1.44 0 1 0 0 2.881 1.44 1.44 0 0 0 0-2.881z"/>
-            </svg>
-          </a>
-          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" class="social-icon-box" aria-label="LinkedIn">
-            <svg class="social-icon" viewBox="0 0 24 24">
-              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.779-1.75-1.75s.784-1.75 1.75-1.75 1.75.779 1.75 1.75-.784 1.75-1.75 1.75zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
             </svg>
           </a>
         </div>
