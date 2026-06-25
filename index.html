@@ -1318,6 +1318,79 @@
         text-align: center;
       }
     }
+
+    /* Floating Booking Button */
+    .floating-booking {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      background-color: var(--primary-gold);
+      color: var(--white);
+      padding: 0.8rem 1.6rem;
+      border-radius: 50px;
+      box-shadow: 0 8px 25px rgba(193, 147, 69, 0.35);
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .floating-booking:hover {
+      background-color: var(--primary-gold-hover);
+      transform: translateY(-4px) scale(1.03);
+      box-shadow: 0 12px 30px rgba(193, 147, 69, 0.5);
+    }
+
+    .floating-booking svg {
+      width: 20px;
+      height: 20px;
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 2;
+    }
+
+    .floating-booking-text {
+      display: inline-block;
+    }
+
+    .floating-booking::after {
+      content: '';
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border-radius: 50px;
+      border: 2px solid var(--primary-gold);
+      top: 0;
+      left: 0;
+      z-index: -1;
+      animation: pulse-ring 2s cubic-bezier(0.215, 0.610, 0.355, 1) infinite;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    @keyframes pulse-ring {
+      0% {
+        transform: scale(0.95);
+        opacity: 0.8;
+      }
+      100% {
+        transform: scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .floating-booking {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        padding: 0.8rem 1.2rem;
+        font-size: 0.85rem;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1999,5 +2072,16 @@
       }
     });
   </script>
+  <!-- Floating Booking Button -->
+  <a href="https://oneliv.com.br/profissional/rosana-ozorio-motta?utm_source=app-shared-link" target="_blank" rel="noopener noreferrer" class="floating-booking" aria-label="Agendar Horário">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+      <line x1="16" y1="2" x2="16" y2="6"></line>
+      <line x1="8" y1="2" x2="8" y2="6"></line>
+      <line x1="3" y1="10" x2="21" y2="10"></line>
+    </svg>
+    <span class="floating-booking-text">Agendar Horário!</span>
+  </a>
+
 </body>
 </html>
